@@ -1,0 +1,41 @@
+{
+    "name": "Property Tenant Portal",
+    "version": "18.0.1.0.0",
+    "category": "Property",
+    "author": "Sachini Peiris",
+    "summary": "Tenant portal for rent, leases, and maintenance",
+    "depends": [
+        "base",
+        "contacts",
+        "portal",
+        "website",
+        "account",
+        "product",
+        "mail",
+        "sms",
+        "payment",
+        "payment_stripe",
+    ],
+    "data": [
+        "security/ir.model.access.csv",
+        "security/record_rules.xml",
+        "data/sequences.xml",
+        "data/cron.xml",
+        "data/sms_cron.xml",
+        "views/property_views.xml",
+        "views/unit_views.xml",
+        "views/lease_views.xml",
+        "views/maintenance_views.xml",
+        "views/report_views.xml",
+        "views/portal_templates.xml",
+        "views/portal_maintenance_templates.xml"
+    ],
+    "assets": {
+        "web.assets_frontend": [
+            "property_tent_portal/static/src/scss/portal_cards.scss",
+        ],
+    },
+    "installable": True,
+    "application": True,
+    "license": "LGPL-3",
+}

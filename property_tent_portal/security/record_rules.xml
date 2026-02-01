@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="property_lease_portal_rule" model="ir.rule">
+        <field name="name">Property Lease Portal Access</field>
+        <field name="model_id" ref="model_property_lease"/>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="domain_force">[("tenant_id", "child_of", user.partner_id.commercial_partner_id.id)]</field>
+    </record>
+
+    <record id="property_unit_portal_rule" model="ir.rule">
+        <field name="name">Property Unit Portal Access</field>
+        <field name="model_id" ref="model_property_unit"/>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="domain_force">[("lease_ids.tenant_id", "child_of", user.partner_id.commercial_partner_id.id)]</field>
+    </record>
+
+    <record id="property_maintenance_portal_rule" model="ir.rule">
+        <field name="name">Property Maintenance Portal Access</field>
+        <field name="model_id" ref="model_property_maintenance_request"/>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="domain_force">[("tenant_id", "child_of", user.partner_id.commercial_partner_id.id)]</field>
+    </record>
+</odoo>

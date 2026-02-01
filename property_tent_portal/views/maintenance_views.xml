@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="property_maintenance_view_tree" model="ir.ui.view">
+        <field name="name">property.maintenance.request.tree</field>
+        <field name="model">property.maintenance.request</field>
+        <field name="arch" type="xml">
+            <list string="Maintenance Requests" decoration-info="state == 'in_progress'" decoration-success="state == 'done'">
+                <field name="name"/>
+                <field name="request_date"/>
+                <field name="property_id"/>
+                <field name="unit_id"/>
+                <field name="tenant_id"/>
+                <field name="issue_type"/>
+                <field name="state" widget="badge"/>
+                <field name="assigned_to_id" widget="many2one_avatar_user"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="property_maintenance_view_form" model="ir.ui.view">
+        <field name="name">property.maintenance.request.form</field>
+        <field name="model">property.maintenance.request</field>
+        <field name="arch" type="xml">
+            <form string="Maintenance Request">
+                <header>
+                    <button name="action_in_progress" string="Start" type="object" class="btn btn-primary" invisible="state != 'new'"/>
+                    <button name="action_done" string="Done" type="object" class="btn btn-secondary" invisible="state == 'done'"/>
+                    <field name="state" widget="statusbar" options="{'clickable': 0}"/>
+                </header>
+                <sheet>
+                    <field name="photo" widget="image" class="oe_avatar" options="{'preview_image': 'photo'}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Tenant &amp; Unit">
+                            <field name="request_date"/>
+                            <field name="tenant_id"/>
+                            <field name="unit_id"/>
+                            <field name="property_id" readonly="1"/>
+                            <field name="lease_id" readonly="1"/>
+                        </group>
+                        <group string="Assignment">
+                            <field name="issue_type"/>
+                            <field name="assigned_to_id"/>
+                            <field name="photo_filename" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" placeholder="Describe the issue..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="property_maintenance_action" model="ir.actions.act_window">
+        <field name="name">Maintenance Requests</field>
+        <field name="res_model">property.maintenance.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <menuitem id="property_rent_menu_maintenance" name="Maintenance Requests" parent="property_rent_menu_root" action="property_maintenance_action" sequence="40" groups="base.group_user"/>
+</odoo>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="property_lease_view_tree" model="ir.ui.view">
+        <field name="name">property.lease.tree</field>
+        <field name="model">property.lease</field>
+        <field name="arch" type="xml">
+            <list string="Leases">
+                <field name="name"/>
+                <field name="unit_id"/>
+                <field name="tenant_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="rent_amount"/>
+                <field name="state"/>
+                <field name="next_invoice_date"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="property_lease_view_form" model="ir.ui.view">
+        <field name="name">property.lease.form</field>
+        <field name="model">property.lease</field>
+        <field name="arch" type="xml">
+            <form string="Lease Contract">
+                <header>
+                    <button name="action_activate" string="Activate" type="object" class="btn btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_end" string="End" type="object" class="btn btn-secondary" invisible="state == 'ended'"/>
+                    <button name="action_generate_invoice" string="Generate Invoice" type="object" class="btn btn-secondary" invisible="state != 'active'"/>
+                    <field name="state" widget="statusbar" options="{'clickable': 0}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <div class="oe_title">
+                                <h1>
+                                    <field name="name" readonly="1"/>
+                                </h1>
+                            </div>
+                            <field name="unit_id"/>
+                            <field name="property_id" readonly="1"/>
+                            <field name="tenant_id"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="rent_amount"/>
+                            <field name="rent_product_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="next_invoice_date"/>
+                            <field name="last_invoice_date" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="currency_id" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="property_lease_action" model="ir.actions.act_window">
+        <field name="name">Leases</field>
+        <field name="res_model">property.lease</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="property_rent_menu_leases" name="Leases" parent="property_rent_menu_root" action="property_lease_action" sequence="30"/>
+</odoo>

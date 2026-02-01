@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="property_unit_view_tree" model="ir.ui.view">
+        <field name="name">property.unit.tree</field>
+        <field name="model">property.unit</field>
+        <field name="arch" type="xml">
+            <list string="Units">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="unit_number"/>
+                <field name="property_id"/>
+                <field name="rent_amount"/>
+                <field name="status"/>
+                <field name="current_tenant_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="property_unit_view_form" model="ir.ui.view">
+        <field name="name">property.unit.form</field>
+        <field name="model">property.unit</field>
+        <field name="arch" type="xml">
+            <form string="Unit">
+                <sheet>
+                    <group>
+                        <group>
+                            <div class="oe_title">
+                                <h1>
+                                    <field name="code" readonly="1"/>
+                                </h1>
+                            </div>
+                            <field name="name"/>
+                            <field name="unit_number"/>
+                            <field name="property_id"/>
+                        </group>
+                        <group>
+                            <field name="rent_amount"/>
+                            <field name="status"/>
+                            <field name="current_tenant_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Leases"/>
+                        <field name="lease_ids">
+                            <list editable="bottom">
+                                <field name="name"/>
+                                <field name="tenant_id"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="property_unit_action" model="ir.actions.act_window">
+        <field name="name">Units</field>
+        <field name="res_model">property.unit</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="property_rent_menu_units" name="Units" parent="property_rent_menu_root" action="property_unit_action" sequence="20"/>
+</odoo>

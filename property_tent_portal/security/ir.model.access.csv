@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_property_property_user,access.property.property.user,model_property_property,base.group_user,1,1,1,1
+access_property_unit_user,access.property.unit.user,model_property_unit,base.group_user,1,1,1,1
+access_property_lease_user,access.property.lease.user,model_property_lease,base.group_user,1,1,1,1
+access_property_unit_portal,access.property.unit.portal,model_property_unit,base.group_portal,1,0,0,0
+access_property_lease_portal,access.property.lease.portal,model_property_lease,base.group_portal,1,0,0,0
+access_property_maintenance_user,access.property.maintenance.user,model_property_maintenance_request,base.group_user,1,1,1,1
+access_property_maintenance_portal,access.property.maintenance.portal,model_property_maintenance_request,base.group_portal,1,0,1,0
