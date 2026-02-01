@@ -31,6 +31,19 @@ A full property rental workflow with tenant portal access for leases, invoices, 
 5. Generate or auto-schedule invoices
 6. Portal user can view invoices and submit maintenance requests
 
+## Stripe Setup (Odoo Payment)
+1. Install **Payment** and **Stripe** apps (included in module dependencies).
+2. Go to **Accounting → Configuration → Payment Providers**.
+3. Open **Stripe** and set:
+   - Publishable Key
+   - Secret Key
+4. Enable the provider and select payment methods.
+5. Ensure the provider is enabled for your website.
+
+Test from portal:
+- Open an unpaid invoice in `/my/invoices`.
+- Click **Pay Now** and complete payment.
+
 ## SMS Flow
 Configured by cron in `data/sms_cron.xml` to send:
 - rent due reminders
@@ -43,7 +56,8 @@ Configured by cron in `data/sms_cron.xml` to send:
 - `/my/invoices`
 
 ## Notes
-- This module uses Odoo core SMS (no Twilio).
+- This module uses Odoo core SMS.
+- Payments use Odoo's core payment framework with Stripe enabled.
 - Maintenance can only move to **In Progress** when assigned.
 
 ## License
