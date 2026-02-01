@@ -1,6 +1,6 @@
-# Property Tenant Portal (Odoo 18 Enterprise)
+# Property Tenant Portal
 
-A full property rental workflow with tenant portal access for leases, invoices, payments, and maintenance requests.
+A full property rental workflow with tenant portal access for leases, invoices, payments, and maintenance requests (odoo 18 Enterprise).
 
 ## Highlights
 - Property + Unit master data
