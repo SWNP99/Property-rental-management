@@ -2,6 +2,8 @@
 
 A full property rental workflow with tenant portal access for leases, invoices, payments, and maintenance requests (odoo 18 Enterprise).
 
+
+
 ## Highlights
 - Property + Unit master data
 - Lease management with recurring rent invoices
